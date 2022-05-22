@@ -1,13 +1,13 @@
 import { ChartOptions } from "chart.js"
 
-export interface ChartData{
-    labels?:string[],
+export interface ChartData {
+    labels:string[],
     datasets:ChartDataset[],
     options:ChartOption
 }
 
 export interface ChartDataset{
-        label?:string[],
+        label:string[],
         data: any[],
         backgroundColor:string[],
         borderColor?:string[],

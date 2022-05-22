@@ -5,8 +5,7 @@ export const chartConfigData = {
         label:[],
         data: [],
         backgroundColor:[],
-        borderColor: [
-         ],
+        borderColor: [],
         borderWidth: [1,1,1,1,1],
         cutout:'90%',
         offset:10
@@ -17,8 +16,11 @@ export const chartConfigData = {
     maintainAspectRatio:false, 
      responsive: true,
      borderJoinStyle:"bevel",
+     tooltips: {
+        enabled: false
+    },
      title: {
-       display: true,
+       display: false,
        position: "top",
        text: "Doughnut Chart",
        fontSize: 18,

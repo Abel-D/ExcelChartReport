@@ -14,68 +14,28 @@ export class EmployeesSummaryComponent implements OnInit {
   labels:string[]=["Billable","Non-Billable","Shadow"];
   color:string[]=["green","yellow","red"];
   dataOutput: number[]=[];
+  total: number=0;
+  chartType="doughnut"
 
   constructor(private _chartService:ChartService) { }
-  // data = {
-  //   labels: this.labels,
-  //   datasets: [
-  //     {
-  //       label:[],
-  //       data: this.empData,
-  //       backgroundColor:["white"],
-  //       borderColor: [
-  //        ],
-  //       borderWidth: [1,1,1,1,1],
-  //       cutout:'90%',
-  //       offset:10
-  //     }
-  //   ]
-  // };
-  // options:any={
-  //   maintainAspectRatio:false, 
-  //    responsive: true,
-  //    borderJoinStyle:"bevel",
-  //    title: {
-  //      display: true,
-  //      position: "top",
-  //      text: "Doughnut Chart",
-  //      fontSize: 18,
-  //      fontColor: "#111"
-  //    },
-  //    legend: {
-      
-  //      rotation:Math.PI*2,
-  //      display: false,
-  //      position: "bottom",
-  //      labels: {
-  //        fontColor: "#333",
-  //        fontSize: 16
-  //      },
-  //      elements: {
-  //       center: {
-  //         text: '',
-  //         color: '#FF6384',
-  //         fontStyle: 'Arial',
-  //         sidePadding: 20,
-  //         minFontSize: 25, 
-  //         lineHeight: 25 
-  //       }
-  //    }
-  //  } as ChartOptions,
-  
-  
-//};
+ 
   ngOnInit(): void {
     this.generate();
+   
     this.cData=chartConfigData;
-   // this.data.labels=this.labels;
+   // this.cData as ChartOptions;
+    this.cData.datasets[0].label=this.labels;
+    console.log(this.cData.datasets[0].label)
     this.cData.datasets[0].data=this.empData;
     this.cData.datasets[0].backgroundColor=this.color;
+    this.cData.datasets[0].borderColor=this.color;
     this.cData.datasets[0].cutout='80%';
+
+    this.total=this.dataOutput.reduce((a,b)=>a+b);
     
     Chart.register({
       id:'doughnutCenter',
-      beforeDraw:function(chart){debugger;
+      beforeDraw:function(chart){
             var width=chart.chartArea.width,
             height=chart.chartArea.height,
             ctx=chart.ctx;
@@ -85,21 +45,70 @@ export class EmployeesSummaryComponent implements OnInit {
             var fontSize = (height / 114).toFixed(2);
                 ctx.font = fontSize + "em sans-serif";
                 ctx.textBaseline = "middle";
-                var text = "Employees",
+                
+                var text = " Employees",
                     textX = Math.round((width - ctx.measureText(text).width) / 2),
                     textY = height / 2;
                 ctx.fillText(text, textX, textY);
                 ctx.save();
 
       }
-    });debugger;
+    },
+    {
+      id:"LabelLines",
+      afterDraw(chart,args,options){
+        const {ctx,chartArea:{top,bottom,left,right,width,height}}=chart;
+
+        console.log("top"+top)
+        console.log("chart"+chart.data.datasets)
+
+//loop through each chart dataset
+        chart.data.datasets.forEach((dataset,i)=>{
+        console.log("ds"+chart.getDatasetMeta(i))
+
+//loop through each dataset props
+        chart.getDatasetMeta(i).data.forEach((datapoint,index)=>{
+        const {x,y}=datapoint.tooltipPosition()
+        console.log("dp"+datapoint.tooltipPosition())
+        
+           ctx.fillStyle='black';
+        
+           ctx.fillRect(x,y,1,1);
+
+// line draw
+          const widthHalf=width/2;
+          const heightHalf=height/2;
+
+          const xLine=x>=widthHalf? x+15:x-15;
+          const yLine=y>=heightHalf? y+15:y-15;
+          ctx.beginPath();
+          ctx.moveTo(x,y);
+          ctx.lineTo(xLine,yLine);
+          if(!chart.data.labels) return;
+          ctx.strokeStyle=chart.data.datasets[0].label as string;
+          ctx.stroke();
+
+ // add label
+      if(!chart.data.datasets[0].label) return;
+   
+        const txtWidth=ctx.measureText(chart.data.datasets[0].label[index] as string).width;
+        console.log(txtWidth)   
+       // ctx.font=''    
+       ctx.fillText(chart.data.datasets[0].label[index] as string,xLine,yLine)
+      })
+       })
+      }
+
+    }
+    )
     this._chartService.getChartConfig(this.cData).subscribe();
     
   }
 generate(){
   this.dataOutput=Array.from({length: 3}, () => Math.floor(Math.random() * 100));
     console.log("gen"+this.dataOutput);
-   // var total=this.dataOutput.reduce((a,b)=>a+b);
+   this.total=this.dataOutput.reduce((a,b)=>a+b);
    this.empData=this.dataOutput;
 }
+
 }
