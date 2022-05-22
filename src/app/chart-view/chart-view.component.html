@@ -1,9 +1,12 @@
-<div id="chart-wrapper" style="display:block;width:400px;height: 400px;background-color:aqua;padding:16px;margin:0px;">
+<nz-card class="bg-white-500 ml-4 mt-0 mb-4">
+<div id="chart-wrapper" class="w-48 h-48 bg-aqua-500 ml-8 mt-4 mb-4 justify-content">
    
     <canvas id="myChart" height="300px" width="300px" baseChart 
-        [data]=""
+        [data]="data"
         [plugins]=""
+      
         [type]="'doughnut'">
     </canvas>
 
 </div>
+</nz-card>
