@@ -1,13 +1,23 @@
-<div class=" flex flex-col w-screen h-screen p-4">
-<div class="grid-container flex flex-row flex-start justify-center content-center w-full h-full gap-8 bg-white-500" >
-  <div class="w-full">
-  <div class="grid-col-1 w-1/2 h-1/2 bg-red-300"><app-employees-summary></app-employees-summary></div>
-  <div class="grid-col-2 w-1/2 h-1/2 bg-blue-300"><app-project-summary></app-project-summary></div>
-</div>
-<div class="grid-col-3 flex-start flex-grow">
-    <div class="grid-col-3 w-1/2 h-1/2 bg-green-300 ml-0"><app-employees-summary></app-employees-summary>
+<nz-layout class="w-screen h-screen p-1">
+  <nz-content class="w-full h-full p-2">
+   
+    <div class=" flex flex-col w-full h-full p-4">
+      <div class="grid-container flex flex-row flex-start justify-start align-start w-full h-full gap-8 bg-white-500" >
+        <div class="w-full">
+        <div class="grid-col-1 w-1/2 h-1/2 bg-red-300">
+          <app-employees-summary></app-employees-summary>
+        </div>
+        <div class="grid-col-2 w-1/2 h-1/2 bg-blue-300">
+          <app-project-summary></app-project-summary>
+        </div>
+     </div>
+     <div class="grid-col-3 flex-start flex-grow ml-0">
+        <div class="grid-col-3 w-1/2 h-1/2 bg-green-300 ml-0">
+          <app-employees-summary></app-employees-summary>
+        </div>
+     <div class="grid-col-4 w-1/2 h-1/2">4</div>
     </div>
-  <div class="grid-col-4 w-1/2 h-1/2">4</div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+  </nz-content>
+</nz-layout>
