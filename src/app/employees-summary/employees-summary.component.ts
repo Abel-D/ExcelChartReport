@@ -30,7 +30,7 @@ export class EmployeesSummaryComponent implements OnInit {
     this.cData.datasets[0].backgroundColor=this.color;
     this.cData.datasets[0].borderColor=this.color;
     this.cData.datasets[0].cutout='80%';
-
+    this.cData.datasets[0].offset=0;
     this.total=this.dataOutput.reduce((a,b)=>a+b);
     
     Chart.register({
