@@ -12,27 +12,25 @@ export class EmployeesSummaryComponent implements OnInit {
 
   constructor() { }
   data1 = {
-    labels: ["Non Billable", "Bench", "Billable"],
+   // labels: ["Non Billable", "Bench", "Billable"],
     datasets: [
       {
-        label: "TeamA Score",
+        label: "",
         data: this.empData,
         backgroundColor: [
           "#DEB887",
           "#A9A9A9",
           "#DC143C",
-          "#F4A460",
-          "#2E8B57"
+         
         ],
         borderColor: [
           "#CDA776",
           "#989898",
           "#CB252B",
-          "#E39371",
-          "#1D7A46"
+         
         ],
-        borderWidth: [1,1,1,1,1],
-        cutout:'90%'
+        borderWidth: [1,1,1],
+        cutout:'80%'
       }
     ]
   };
@@ -43,7 +41,7 @@ export class EmployeesSummaryComponent implements OnInit {
      title: {
        display: true,
        position: "top",
-       text: "Doughnut Chart",
+       text: "",
        fontSize: 18,
        fontColor: "#111"
      },
@@ -58,7 +56,7 @@ export class EmployeesSummaryComponent implements OnInit {
        },
        elements: {
         center: {
-          text: 'Red is 2/3s',
+          text: '',
           color: '#FF6384', // Default is #000000
           fontStyle: 'Arial', // Default is Arial
           sidePadding: 20, // Default is 20 (as a percentage)
@@ -71,6 +69,9 @@ export class EmployeesSummaryComponent implements OnInit {
   
 };
   ngOnInit(): void {
+    this.generate();
+    this.data1.datasets[0].data=this.empData;
+    console.log(this.empData)
   }
   generate(){
   this.empData=Array.from({length: 3}, () => Math.floor(Math.random() * 100));

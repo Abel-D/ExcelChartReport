@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { ChartViewComponent } from './chart-view/chart-view.component';
 import { EmployeesSummaryComponent } from './employees-summary/employees-summary.component';
 import { ProjectSummaryComponent } from './project-summary/project-summary.component';
-import { NzLayoutModule } from 'ng-zorro-antd/layout'
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzCardModule } from 'ng-zorro-antd/card'
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
   imports: [
     BrowserModule,
     NgChartsModule,
-    NzLayoutModule
+    NzLayoutModule,
+    NzCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
