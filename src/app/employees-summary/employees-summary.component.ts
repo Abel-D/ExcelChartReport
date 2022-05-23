@@ -8,10 +8,11 @@ import { Chart,ChartOptions } from 'chart.js';
 })
 export class EmployeesSummaryComponent implements OnInit {
   empData: any[]=[];
+  total: any;
 
   constructor() { }
   data1 = {
-    labels: ["match1", "match2", "match3", "match4", "match5"],
+    labels: ["Non Billable", "Bench", "Billable"],
     datasets: [
       {
         label: "TeamA Score",
@@ -71,5 +72,10 @@ export class EmployeesSummaryComponent implements OnInit {
 };
   ngOnInit(): void {
   }
+  generate(){
+  this.empData=Array.from({length: 3}, () => Math.floor(Math.random() * 100));
+ 
+ this.total=this.empData.reduce((a,b)=>a+b);
 
+  }
 }
