@@ -79,10 +79,10 @@ export class EmployeesSummaryComponent implements OnInit {
 
  // add label
         
-        const txtWidth=ctx.measureText(chart.data.labels[index] as string).width;
+        const txtWidth=ctx.measureText(chart.data.datasets[0].data[index] as unknown as string +chart.data.labels[index] as string).width;
         console.log(txtWidth)   
         ctx.font='10px Arial';    
-      
+      //  ctx.fillText(chart.data.datasets[0].data[index] as unknown as string,xLine+20,yLine-30);
         ctx.fillText(chart.data.datasets[0].data[index] as unknown as string + chart.data.labels[index] as string,xLine,yLine)
       })
        })

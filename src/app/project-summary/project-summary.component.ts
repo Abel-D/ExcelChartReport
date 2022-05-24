@@ -24,10 +24,10 @@ export class ProjectSummaryComponent implements OnInit {
           ctx.restore();
          
           var fontSize = (height / 114).toFixed(2);
-              ctx.font = fontSize + "em sans-serif";
+              ctx.font = fontSize + "Arial";
              // ctx.font.bold;
               ctx.textBaseline = "middle";
-              ctx.font = "bold 16pt Helvetica";
+              ctx.font = "bold 14pt Helvetica";
                // @ts-ignore: Object is possibly 'null'.
                var total=chart.data.datasets[0].data.reduce((a,b)=>a+b);
               var text = total+""+"Projects",
@@ -57,14 +57,14 @@ export class ProjectSummaryComponent implements OnInit {
          // if (!dataset.backgroundColor) return;
          // @ts-ignore: Object is possibly 'null'.
            ctx.fillStyle=chart.data.datasets[0]?.backgroundColor[index] as string;
-        
+        //mark center of section
            ctx.fillRect(x,y,0.5,0.5);
 
 // line draw
           const widthHalf=width/2;
           const heightHalf=height/2;
 
-          const xLine=x>=widthHalf? x+15:x-15;
+          const xLine=x>=widthHalf? x-15:x+15;
           const yLine=y>=heightHalf? y+15:y-15;
           ctx.beginPath();
           ctx.moveTo(x,y);
@@ -79,11 +79,11 @@ export class ProjectSummaryComponent implements OnInit {
 
  // add label
         
-        const txtWidth=ctx.measureText(chart.data.labels[index] as string).width;
-        console.log(txtWidth)   
+ const txtWidth=ctx.measureText(chart.data.datasets[0].data[index] as unknown as string +chart.data.labels[index] as string).width;
+ console.log(txtWidth)   
         ctx.font='10px Arial';    
-      
-        ctx.fillText(chart.data.datasets[0].data[index] as unknown as string +chart.data.labels[index] as string,xLine,yLine)
+        ctx.fillText(chart.data.datasets[0].data[index] as unknown as string,xLine+20,yLine-30);
+        ctx.fillText(chart.data.labels[index] as string,xLine,yLine)
       })
      })
     }
@@ -113,13 +113,12 @@ export class ProjectSummaryComponent implements OnInit {
       }
     ]
   };
-  options:any={
+  options={
     plugins: {
       legend: {
           display: false
       },
-    },
-    maintainAspectRatio:false, 
+     maintainAspectRatio:false, 
      responsive: true,
      borderJoinStyle:"bevel",
      title: {
@@ -128,7 +127,7 @@ export class ProjectSummaryComponent implements OnInit {
        text: "",
        fontSize: 18,
        fontColor: "#111"
-     }  as ChartOptions,
+     }  } as ChartOptions,
   //      legend: {
       
   //      rotation:Math.PI*2,
