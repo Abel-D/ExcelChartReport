@@ -24,16 +24,17 @@ export class EmployeesSummaryComponent implements OnInit {
             ctx.restore();
            
             var fontSize = (height / 114).toFixed(2);
-                ctx.font = fontSize + "em sans-serif";
+                ctx.font = fontSize + "Arial";
                // ctx.font.bold;
                 ctx.textBaseline = "middle";
-                ctx.font = "bold 16pt Helvetica";
+                ctx.font = "bold 14pt Helvetica";
                   // @ts-ignore: Object is possibly 'null'.
                 var total=chart.data.datasets[0].data.reduce((a,b)=>a+b);
                 var text = "Employees",
                     textX = Math.round((width - ctx.measureText(text).width) / 2),
                     textY = height / 2;
-                    ctx.fillText(total+text , textX,  textY+30);
+                    ctx.fillText(total as unknown as string , textX+20,  textY+15);
+                    ctx.fillText(text , textX,  textY+30);
                 ctx.save();
 
       }
@@ -83,6 +84,7 @@ export class EmployeesSummaryComponent implements OnInit {
         console.log(txtWidth)   
         ctx.font='10px Arial';    
       //  ctx.fillText(chart.data.datasets[0].data[index] as unknown as string,xLine+20,yLine-30);
+
         ctx.fillText(chart.data.datasets[0].data[index] as unknown as string + chart.data.labels[index] as string,xLine,yLine)
       })
        })
@@ -129,26 +131,7 @@ export class EmployeesSummaryComponent implements OnInit {
        fontSize: 18,
        fontColor: "#111"
      },
-  //    legend: {
-  //     display: false,
-  //      rotation:Math.PI*2,
-  //      position: "bottom",
-  //      labels: {
-  //        fontColor: "#333",
-  //        fontSize: 16
-  //      },
-  //      elements: {
-  //       center: {
-  //         text: '',
-  //         color: '#FF6384', // Default is #000000
-  //         fontStyle: 'Arial', // Default is Arial
-  //         sidePadding: 20, // Default is 20 (as a percentage)
-  //         minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-  //         lineHeight: 25 // Default is 25 (in px), used for when text wraps
-  //       }
-  //    },  
-   
-  //  }  
+    
   }
 }as ChartOptions;
   
