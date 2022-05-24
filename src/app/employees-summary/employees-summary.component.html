@@ -2,8 +2,9 @@
     <div id="chart-wrapper" class="w-56 h-56 bg-aqua-500 justify-content"><div class="h-full w-full p-2 bg-color-red">
     <canvas id="myChart" height="300px" width="300px" baseChart 
     [data]="data1"
-    [plugins]=""
-    [type]="'doughnut'">
+    [plugins]=[LabelLines,doughnutCenter]
+    [type]="'doughnut'"
+    [options]="options">
 </canvas>
     </div>
 </div>

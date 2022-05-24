@@ -1,9 +1,0 @@
-<div id="chart-wrapper" style="display:block;width:400px;height: 400px;background-color:aqua;padding:16px;">
-   
-    <canvas id="myChart"  baseChart 
-        [data]="data1"
-        [plugins]=""
-        [type]="'doughnut'">
-    </canvas>
-
-</div>
