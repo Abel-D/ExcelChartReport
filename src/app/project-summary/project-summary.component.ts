@@ -130,8 +130,4 @@ export class ProjectSummaryComponent implements OnInit {
  
      }  } as ChartOptions;
 
-     generate(){
-      this.proData=Array.from({length: 4}, () => Math.floor(Math.random() * 100));
-    
-      }
 }
