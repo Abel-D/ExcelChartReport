@@ -107,7 +107,7 @@ export class ProjectSummaryComponent implements OnInit {
                  
         ],
         borderWidth: [1,1],
-        cutout:'80%',
+        cutout:'0%',
         offset:0
       }
     ]
