@@ -33,7 +33,7 @@ export class EmployeesSummaryComponent implements OnInit {
                 var text = "Employees",
                     textX = Math.round((width - ctx.measureText(text).width) / 2),
                     textY = height / 2;
-                    ctx.fillText(total as unknown as string , textX+20,  textY+15);
+                    ctx.fillText(total as unknown as string , textX+25,  textY+15);
                     ctx.fillText(text , textX,  textY+30);
                 ctx.save();
 
@@ -72,7 +72,7 @@ export class EmployeesSummaryComponent implements OnInit {
           ctx.lineTo(xLine,yLine);
           if(!chart.data.labels) return;
 
-          //show text label
+  //show text label
           // @ts-ignore: Object is possibly 'null'.
         ctx.strokeStyle=dataset.backgroundColor[index];
         ctx.lineWidth=5;

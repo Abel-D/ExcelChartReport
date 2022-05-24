@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartOptions } from 'chart.js';
-import ChartDataLabels  from 'chartjs-plugin-datalabels'
 
 @Component({
   selector: 'app-project-summary',
@@ -43,7 +42,7 @@ export class ProjectSummaryComponent implements OnInit {
     id:"LabelLines",
     afterDraw(chart:Chart,args:any,options:any){
       const {ctx,chartArea:{top,bottom,left,right,width,height}}=chart;
-
+      
         console.log("top"+top)
         console.log("chart"+chart.data.datasets)
 
@@ -130,4 +129,9 @@ export class ProjectSummaryComponent implements OnInit {
      },
  
      }  } as ChartOptions;
+
+     generate(){
+      this.proData=Array.from({length: 4}, () => Math.floor(Math.random() * 100));
+    
+      }
 }
